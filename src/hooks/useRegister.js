@@ -39,7 +39,7 @@ export function useRegister() {
 
     try {
       // Menggunakan environment variable untuk URL API base
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`;
+      const apiUrl = `${API_BASE_URL}/auth/register`;
 
       const response = await fetch(apiUrl, {
         method: 'POST',
