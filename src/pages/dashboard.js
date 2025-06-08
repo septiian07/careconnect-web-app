@@ -1,14 +1,35 @@
-import Head from 'next/head';
-import { useUserProfile } from '@/hooks/useUserProfile';
+import Head from 'next/head'; 
+import { useDashboardData } from '../hooks/useDashboardData'; 
+import DashboardView from '../components/dashboard/DashboardView';
 
 export default function DashboardPage() {
-  const { userName, isLoading } = useUserProfile();
+  const {
+    userName,
+    isLoading,
+    error,
+    handleAboutClick,
+    handleListDokterClick,
+    handleRiwayatClick,
+    handleLogout
+  } = useDashboardData();
 
-
+  // Tampilan loading atau error saat data sedang diambil
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-        <p className="text-lg text-gray-600">Loading...</p>
+      <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+        <div className="alert alert-danger" role="alert">
+          Error: {error}
+        </div>
       </div>
     );
   }
@@ -16,18 +37,17 @@ export default function DashboardPage() {
   return (
     <>
       <Head>
-        <title>{userName ? `${userName}'s Dashboard` : 'Dashboard'}</title>
+        <title>Dashboard - {userName}</title>
+        <meta name="description" content="Dashboard pengguna CareConnect" />
       </Head>
-      <h1 className="text-4xl font-bold text-gray-800 text-center">Dashboard</h1>
-      {userName ? (
-        <p className="text-gray-700 mt-3 text-xl text-center">
-          Welcome back, <span className="font-semibold">{userName}</span>!
-        </p>
-      ) : (
-        <p className="text-gray-600 mt-2 text-lg text-center">
-          Welcome to your dashboard! (User not identified)
-        </p>
-      )}
+
+      <DashboardView
+        userName={userName}
+        onAboutClick={handleAboutClick}
+        onListDokterClick={handleListDokterClick}
+        onRiwayatClick={handleRiwayatClick}
+        onLogoutClick={handleLogout}
+      />
     </>
   );
 }
