@@ -1,18 +1,10 @@
 import Head from 'next/head';
-import { useLogin } from '../hooks/useLogin';
-import LoginFormView from '../components/auth/LoginFormView';
+import { useState } from "react";
+import { FaUser, FaLock } from "react-icons/fa";
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 export default function LoginPage() {
-  const {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    error,
-    successMessage,
-    isLoading,
-    handleSubmit,
-  } = useLogin();
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
@@ -27,32 +19,68 @@ export default function LoginPage() {
           }
         `}</style>
       </Head>
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-white shadow-xl rounded-xl flex flex-col md:flex-row overflow-hidden">
-            {/* Left side - Illustration */}
-            <div className="w-full md:w-1/2 bg-gradient-to-br from-teal-50 to-cyan-100 p-8 sm:p-12 flex flex-col justify-center items-center">
-              <div className="w-full max-w-xs">
-                <img
-                  src="https://placehold.co/400x400/E0F2F7/35A7FF?text=Illustration"
-                  alt="Login Illustration"
-                  className="w-full h-auto rounded-lg"
-                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x400/CCCCCC/FFFFFF?text=Image+Error'; }}
-                />
-              </div>
+
+      <div className="min-h-screen flex items-center justify-center bg-[#fffaf0] px-4">
+        <div className="bg-white p-8 rounded-xl shadow-xl flex max-w-4xl w-full">
+          {/* Kiri: Gambar */}
+          <div className="w-1/2 hidden md:flex items-center justify-center">
+            <img
+              src="/img/login-illustration.png"
+              alt="Login Illustration"
+              className="w-[80%] max-w-[250px]"
+            />
+          </div>
+
+          {/* Kanan: Form Login */}
+          <div className="w-full md:w-1/2 space-y-6">
+            <h2 className="text-2xl font-bold text-center text-gray-800">
+              Hallo! Silahkan <br /> Masukan Username dan Password
+            </h2>
+
+            {/* Username */}
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-teal-500">
+                <FaUser />
+              </span>
+              <input
+                type="text"
+                placeholder="Masukan Username"
+                className="w-full pl-10 pr-4 py-3 rounded-md border border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-300
+                         text-gray-800 placeholder-gray-400 text-base"
+              />
             </div>
 
-            {/* Right side - Form View */}
-            <LoginFormView
-              username={username}
-              onUsernameChange={(e) => setUsername(e.target.value)}
-              password={password}
-              onPasswordChange={(e) => setPassword(e.target.value)}
-              onSubmit={handleSubmit}
-              isLoading={isLoading}
-              error={error}
-              successMessage={successMessage}
-            />
+            {/* Password */}
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-teal-500">
+                <FaLock />
+              </span>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Masukan Password"
+                className="w-full pl-10 pr-10 py-3 rounded-md border border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-300
+                         text-gray-800 placeholder-gray-400 text-base"
+              />
+              <span
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-teal-500 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IoEyeOff /> : <IoEye />}
+              </span>
+            </div>
+
+            {/* Tombol Login */}
+            <button className="w-full bg-red-400 hover:bg-red-500 text-white py-3 rounded-md shadow text-lg font-semibold">
+              Login
+            </button>
+
+            {/* Link Registrasi */}
+            <p className="text-center text-sm text-gray-700">
+              Belum punya akun?{" "}
+              <a href="/register" className="text-teal-600 font-semibold hover:underline">
+                Registrasi dulu di sini
+              </a>
+            </p>
           </div>
         </div>
       </div>
