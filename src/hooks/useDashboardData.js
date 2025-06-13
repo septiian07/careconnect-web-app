@@ -2,51 +2,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export function useDashboardData() {
   const router = useRouter();
-  const [userName, setUserName] = useState('Pengguna'); 
+  const [userData, setUserData] = useState({});  
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState(null); 
 
   useEffect(() => {
-    const fetchUserName = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const token = localStorage.getItem('authToken'); 
-        if (!token) {
-          setUserName('Pengguna');
-          setIsLoading(false);
-          ('/login'); 
-          return;
-        }
-
-        const apiUrl = `${API_BASE_URL}/auth/login`;
-        const response = await fetch(apiUrl, {
-          method: 'GET', 
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, 
-          },
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          setUserName(data.name || 'Pengguna');
-          localStorage.setItem('userName', data.name);
-        } else {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Gagal mengambil nama pengguna');
-        }
-      } catch (err) {
-        setError(err.message);
-        console.error("Error fetching user name:", err);
-        setUserName('Pengguna'); 
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchUserName();
+    const userData = localStorage.getItem('userData');
+    setUserData(JSON.parse(userData));
   }, []); 
 
   // Fungsi navigasi untuk tombol "About"
@@ -71,12 +37,13 @@ export function useDashboardData() {
   }, [router]);
 
   return {
-    userName,
     isLoading,
     error,
+    userData,
     handleAboutClick,
     handleListDokterClick,
     handleRiwayatClick,
     handleLogout,
+    setUserData,
   };
 }

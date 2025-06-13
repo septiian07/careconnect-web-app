@@ -44,7 +44,7 @@ export default function DashboardView({
       <div className="row w-100 justify-content-center align-items-center flex-grow-1">
         <div className="col-lg-6 col-md-8 text-center mb-4 mb-lg-0">
           <img
-            src="/img/2.jpg"
+            src="/img/2.png"
             alt="Selamat Datang Ilustrasi"
             className="img-fluid"
             style={{ maxWidth: '550px' }}

@@ -3,6 +3,7 @@ import React from 'react';
 export default function RegisterFormView({ formData, handleChange, handleSubmit, loading }) {
   return (
     <form onSubmit={handleSubmit}>
+      {/* Username */}
       <div className="mb-3">
         <label htmlFor="username" className="form-label">Username</label>
         <input
@@ -13,9 +14,11 @@ export default function RegisterFormView({ formData, handleChange, handleSubmit,
           value={formData.username}
           onChange={handleChange}
           required
+          disabled={loading}
         />
       </div>
 
+      {/* Nama Lengkap */}
       <div className="mb-3">
         <label htmlFor="name" className="form-label">Nama Lengkap</label>
         <input
@@ -26,9 +29,11 @@ export default function RegisterFormView({ formData, handleChange, handleSubmit,
           value={formData.name}
           onChange={handleChange}
           required
+          disabled={loading}
         />
       </div>
 
+      {/* Password */}
       <div className="mb-3">
         <label htmlFor="password" className="form-label">Password</label>
         <input
@@ -39,9 +44,11 @@ export default function RegisterFormView({ formData, handleChange, handleSubmit,
           value={formData.password}
           onChange={handleChange}
           required
+          disabled={loading}
         />
       </div>
 
+      {/* ID Peran */}
       <div className="mb-4">
         <label htmlFor="role_id" className="form-label">ID Peran</label>
         <input
@@ -52,10 +59,12 @@ export default function RegisterFormView({ formData, handleChange, handleSubmit,
           value={formData.role_id}
           onChange={handleChange}
           required
+          disabled={loading}
           min="1"
         />
       </div>
 
+      {/* Tombol Daftar */}
       <div className="d-grid mb-3">
         <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
           {loading ? (

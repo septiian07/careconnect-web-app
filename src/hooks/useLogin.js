@@ -1,16 +1,29 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-// Access the environment variable
+// Akses environment variable
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export function useLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,19 +32,20 @@ export function useLogin() {
     setIsLoading(true);
 
     if (!username || !password) {
-      setError('Username and password are required.');
+      setError('Username dan password wajib diisi.');
       setIsLoading(false);
       return;
     }
 
+    // Peringatan jika API_BASE_URL tidak ada
     if (!API_BASE_URL) {
-      setError('API configuration error. Please contact support.');
+      setError('Kesalahan konfigurasi API. Silakan hubungi dukungan.');
       setIsLoading(false);
+      console.error('Environment variable NEXT_PUBLIC_API_BASE_URL is not defined.');
       return;
     }
 
     try {
-      // Use the environment variable to construct the full API endpoint
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
@@ -43,7 +57,7 @@ export function useLogin() {
       const data = await response.json();
 
       if (response.ok && data.statusCode === 200) {
-        setSuccessMessage(data.message || 'Login successful!');
+        setSuccessMessage(data.message || 'Login berhasil!');
         console.log('Login successful:', data);
         console.log('Token:', data.result.token);
 
@@ -51,14 +65,14 @@ export function useLogin() {
         localStorage.setItem('userData', JSON.stringify(data.result.user));
 
         setTimeout(() => {
-          router.push('/dashboard'); // Or your desired route
+          router.push('/dashboard');
         }, 1500);
       } else {
-        setError(data.message || 'Login failed. Please check your credentials.');
+        setError(data.message || 'Login gagal. Silakan periksa kredensial Anda.');
       }
     } catch (err) {
       console.error('Login API error:', err);
-      setError('An error occurred during login. Please try again.');
+      setError('Terjadi kesalahan koneksi atau API tidak dapat dijangkau. Silakan coba lagi.');
     } finally {
       setIsLoading(false);
     }
@@ -66,12 +80,14 @@ export function useLogin() {
 
   return {
     username,
-    setUsername,
+    onUsernameChange: handleUsernameChange,
     password,
-    setPassword,
+    onPasswordChange: handlePasswordChange,
+    showPassword,
+    toggleShowPassword,
     error,
     successMessage,
     isLoading,
-    handleSubmit,
+    onSubmit: handleSubmit,
   };
 }

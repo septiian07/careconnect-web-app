@@ -7,6 +7,7 @@ export default function DashboardPage() {
     userName,
     isLoading,
     error,
+    userData,
     handleAboutClick,
     handleListDokterClick,
     handleRiwayatClick,
@@ -37,12 +38,12 @@ export default function DashboardPage() {
   return (
     <>
       <Head>
-        <title>Dashboard - {userName}</title>
+        <title>Dashboard - {userData.name}</title>
         <meta name="description" content="Dashboard pengguna CareConnect" />
       </Head>
 
       <DashboardView
-        userName={userName}
+        userName={userData.name}
         onAboutClick={handleAboutClick}
         onListDokterClick={handleListDokterClick}
         onRiwayatClick={handleRiwayatClick}
