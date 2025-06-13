@@ -50,18 +50,20 @@ export default function RegisterFormView({ formData, handleChange, handleSubmit,
 
       {/* ID Peran */}
       <div className="mb-4">
-        <label htmlFor="role_id" className="form-label">ID Peran</label>
-        <input
-          type="number"
+        <label htmlFor="role_id" className="form-label">Pilih Peran</label>
+        <select
           id="role_id"
           name="role_id"
-          className="form-control form-control-lg"
+          className="form-select form-select-lg" 
           value={formData.role_id}
           onChange={handleChange}
           required
           disabled={loading}
-          min="1"
-        />
+        >
+          <option value="">-- Pilih Peran --</option> 
+          <option value="1">Admin</option>
+          <option value="2">Pengguna</option>
+        </select>
       </div>
 
       {/* Tombol Daftar */}
