@@ -51,15 +51,15 @@ export default function AboutPage() {
       </Head>
 
       <main className="bg-light min-vh-100 w-100 d-flex flex-column align-items-center py-2 px-3" style={{ backgroundColor: '#fffdf5', paddingTop: '3rem' }}>
-        <div className="container-fluid position-relative" style={{ maxWidth: '1200px' }}>
+        <div className="container-fluid position-relative" style={{ maxWidth: '1920px' }}>
           {/* Back Button */}
           <button
             className="btn btn-link position-absolute p-0 border-0"
             onClick={handleBackClick}
             aria-label="Go back"
-            style={{ left: '30px', top: '40px', height: 'auto', width: 'auto' }} // Sesuaikan posisi
+            style={{ left: '30px', top: '40px', height: 'auto', width: 'auto' }} 
           >
-            <FaArrowLeft className="text-dark" style={{ fontSize: '2rem' }} />
+            <FaArrowLeft className="text-dark" style={{ fontSize: '50px' }} />
           </button>
 
           {/* Page Title */}

@@ -9,7 +9,7 @@ export default function DoctorsPage() {
   const { doctors, searchTerm, handleSearchChange, loading, error } = useDoctors();
 
   const handleBackClick = () => {
-    router.back();
+    router.push('/dashboard');
   };
 
   const handleViewScheduleClick = (doctorId) => {
