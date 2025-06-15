@@ -1,4 +1,3 @@
-// hooks/useDashboardData.js
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
@@ -22,7 +21,7 @@ export function useDashboardData() {
 
   // Fungsi navigasi untuk tombol "List Dokter"
   const handleListDokterClick = useCallback(() => {
-    router.push('/listdoctors'); 
+    router.push('/doctors'); 
   }, [router]);
 
   // Fungsi navigasi untuk tombol "Riwayat"

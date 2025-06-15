@@ -13,7 +13,7 @@ export default function DoctorsListView({
   const router = useRouter();
 
   const handleViewScheduleClick = (doctorId) => {
-    router.push(`/doctors/${doctorId}/schedule`);
+    router.push(`/doctors/${doctorId}/doktorSchedule`);
   };
   
   return (

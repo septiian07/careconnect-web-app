@@ -16,28 +16,28 @@ export default function AboutPage() {
       name: 'Septian Yoga',
       nim: '2250085006',
       role: 'Backend Developer',
-      photo: '/img/septian.jpg', 
+      photo: '/img/septian.jpeg', 
     },
     {
       id: 2,
       name: 'Boy Boby Putra',
       nim: '2250085008',
       role: 'Frontend Developer',
-      photo: '/img/boy.jpg',
+      photo: '/img/boy.jpeg',
     },
     {
       id: 3,
       name: 'Muhamad Ridwan Husaeni',
       nim: '2250085010',
       role: 'Frontend Developer',
-      photo: '/img/husein.jpg',
+      photo: '/img/husein.jpeg',
     },
     {
         id: 4,
         name: 'Dede Anugrah',
         nim: '2250085011',
         role: 'Frontend Developer',
-        photo: '/img/dede.jpg',
+        photo: '/img/dede.jpeg',
     },
   ];
 
@@ -76,7 +76,7 @@ export default function AboutPage() {
                     src={member.photo}
                     className="card-img-top rounded-circle mx-auto mb-3 object-fit-cover"
                     alt={`Foto ${member.name}`}
-                    style={{ width: '150px', height: '150px', border: '3px solid #37c8b3' }} // Ukuran dan styling foto
+                    style={{ width: '150px', height: '150px', border: '3px solid #37c8b3' }}
                   />
                   <div className="card-body p-0">
                     <h5 className="card-title fw-bold mb-1" style={{ fontSize: '1.75rem', color: '#2e2e2e' }}>{member.name}</h5>
