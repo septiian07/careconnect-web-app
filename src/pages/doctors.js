@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useDoctors } from '../../hooks/useDoctors';
-import DoctorsListView from '../../components/doctors/DoctorListView';
+import { useDoctors } from '../hooks/useDoctors';
+import DoctorsListView from '../components/doctors/DoctorListView';
 
 export default function DoctorsPage() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function DoctorsPage() {
   };
 
   const handleViewScheduleClick = (doctorId) => {
-    router.push(`/doctors/${doctorId}/doktorSchedule`);
+    router.push(`/doctors/${doctorId}/doctorSchedule`);
   };
 
   return (
