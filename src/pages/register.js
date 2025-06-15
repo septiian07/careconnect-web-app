@@ -10,9 +10,8 @@ export default function RegisterPage() {
       <Head>
         <title>Daftar Akun - CareConnect</title>
         <meta name="description" content="Daftar akun baru di CareConnect" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAX+D1F3H5Q+12P3t/7lM5x5T/FwE8/4f/2y/I" crossorigin="anonymous" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-GLhlQ8iJ7S6FhGjC4oJ1S8fW4z0+5zPzT2/4o/4/5p/6n/7p/8d/9m/0o/1r/2s/3t/4u/5v/6w/7x/8y/9z/+" crossorigin="anonymous"></script>
-       
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100 bg-light p-3">

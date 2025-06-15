@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
+import '@fontsource/poppins';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
