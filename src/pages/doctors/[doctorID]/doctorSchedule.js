@@ -14,8 +14,7 @@ export default function JadwalDokterPage() {
   };
 
   const handleMakeAppointmentClick = () => {
-    alert(`Membuat janji dengan ${doctorInfo ? doctorInfo.doctor_name : 'Dokter'} (ID: ${doctorId})`);
-    // router.push(`/appointment/book?doctorId=${doctorId}`);
+    router.push(`/appointment?doctorId=${doctorId}`); // Navigasi ke form janji temu dengan doctorId
   };
 
   return (
