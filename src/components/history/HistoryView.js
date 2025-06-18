@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaHospitalAlt, FaNotesMedical } from 'react-icons/fa';
 import { FaArrowLeft, FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
@@ -83,6 +83,20 @@ export default function HistoryView({
                             </p>
                             <p className="fw-bold text-dark mb-0" style={{ fontSize: '0.8rem', fontFamily: "'Poppins',Helvetica", color: '#2f2f3e' }}>
                                 {appointment.type}
+                            </p>
+                        </div>
+
+                        <div className="d-flex align-items-center justify-content-between">
+                            <p className="text-dark mb-0 d-flex align-items-center" style={{ fontSize: '1rem', fontFamily: "'Poppins',Helvetica", color: '#000' }}>
+                                <FaHospitalAlt className="me-2" style={{ fontSize: '1.25rem' }} />
+                                {appointment.hospital}
+                            </p>
+                        </div>
+
+                        <div className="d-flex align-items-center justify-content-between">
+                            <p className="text-dark mb-0 d-flex align-items-center" style={{ fontSize: '1rem', fontFamily: "'Poppins',Helvetica", color: '#000' }}>
+                                <FaNotesMedical className="me-2" style={{ fontSize: '1.25rem' }} />
+                                {appointment.note ?? 'Tidak ada catatan'}
                             </p>
                         </div>
                       </div>

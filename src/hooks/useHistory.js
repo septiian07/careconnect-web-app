@@ -14,28 +14,28 @@ const getAuthToken = () => {
 
 // Fungsi helper untuk mendapatkan warna status saja (tanpa avatar styling)
 const getStatusStyling = (status) => {
-    let statusColor = 'bg-secondary'; // Default
-    switch (status.toLowerCase()) {
-        case 'approve':
-        case 'approved':
-            statusColor = 'bg-success';
-            break;
-        case 'pending':
-        case 'dalam proses':
-            statusColor = 'bg-warning text-dark';
-            break;
-        case 'rejected':
-        case 'ditolak':
-            statusColor = 'bg-danger';
-            break;
-        case 'completed':
-        case 'selesai':
-            statusColor = 'bg-primary';
-            break;
-        default:
-            statusColor = 'bg-secondary';
-    }
-    return { statusColor };
+  let statusColor = 'bg-secondary'; // Default
+  switch (status.toLowerCase()) {
+    case 'approve':
+    case 'approved':
+      statusColor = 'bg-success';
+      break;
+    case 'pending':
+    case 'dalam proses':
+      statusColor = 'bg-warning text-dark';
+      break;
+    case 'rejected':
+    case 'ditolak':
+      statusColor = 'bg-danger';
+      break;
+    case 'completed':
+    case 'selesai':
+      statusColor = 'bg-primary';
+      break;
+    default:
+      statusColor = 'bg-secondary';
+  }
+  return { statusColor };
 };
 
 
@@ -69,15 +69,30 @@ export function useHistory() {
 
       if (response.ok && data.statusCode === 200) {
         const processedAppointments = (data.result || []).map((trx, index) => {
-            const { statusColor } = getStatusStyling(trx.status); 
-            return {
-                id: trx.transaction_id,
-                doctor: trx.doctor_name,
-                date: `${trx.date} - ${trx.time} WIB`,
-                type: trx.method,
-                status: trx.status,
-                statusColor: statusColor,
-            };
+          const { statusColor } = getStatusStyling(trx.status);
+
+          const date = new Date(trx.date);
+          const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'Asia/Jakarta'
+          };
+          const formatter = new Intl.DateTimeFormat('id-ID', options);
+
+          const formattedDate = formatter.format(date);
+          console.log(`Processing appointment ${index + 1}:`, trx);
+          return {
+            id: trx.transaction_id,
+            doctor: trx.doctor_name,
+            date: `${formattedDate} - ${trx.time} WIB`,
+            type: trx.method,
+            status: trx.status,
+            statusColor: statusColor,
+            hospital: trx.hospital,
+            note: trx.note,
+          };
         });
         setAppointments(processedAppointments);
       } else {
